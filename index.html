@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>משחק הניחושים הקסום</title>
+<style>
+body { font-family: sans-serif; text-align: center; background: #f0f2f5; padding-top: 50px; transition: 0.5s; }
+.box-container { display: flex; justify-content: center; gap: 20px; margin-top: 50px; }
+.box { width: 100px; height: 100px; background: #6c5ce7; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 40px; color: white; transition: 0.3s; }
+.box:hover { transform: scale(1.1); background: #a29bfe; }
+.message { margin-top: 30px; font-size: 24px; font-weight: bold; color: #2d3436; }
+#reset-btn { margin-top: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; display: none; }
+</style>
+</head>
+<body>
+<h1>איפה היהלום מסתתר? 💎</h1>
+<div class="box-container">
+<div class="box" onclick="checkGuess(0, this)">?</div>
+<div class="box" onclick="checkGuess(1, this)">?</div>
+<div class="box" onclick="checkGuess(2, this)">?</div>
+</div>
+<p id="message" class="message">בחרי קופסה אחת!</p>
+<button id="reset-btn" onclick="resetGame()">שחק שוב</button>
+
+</body>
+</html>
