@@ -1,1 +1,1 @@
-body { background-color: #87ceeb; animation: changeBackground 10s infinite; } @keyframes changeBackground { 0% { background-color: #87ceeb; } 50% { background-color: #4682b4; } 100% { background-color: #87ceeb; } }
+body { background-color: red; animation: changeBackground 10s infinite; } @keyframes changeBackground { 0% { background-color: #87ceeb; } 50% { background-color: #4682b4; } 100% { background-color: #87ceeb; } }
