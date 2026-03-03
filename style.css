@@ -1,1 +1,1 @@
-body { background-color: red; animation: changeBackground 10s infinite; } @keyframes changeBackground { 0% { background-color: #87ceeb; } 50% { background-color: #4682b4; } 100% { background-color: #87ceeb; } }
+.box { width: 200px; height: 200px; background-color: #ccc; border: 1px solid #000; margin: 10px; }
