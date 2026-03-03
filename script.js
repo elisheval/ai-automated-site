@@ -1,1 +1,1 @@
-console.log('ניתוח הדרישות המצורפות במסמך וזיהוי המשימות העיקריות'); console.log('1. שינוי צבע הרקע'); console.log('2. עיצוב מחדש של הכפתורים'); console.log('3. ניתוח הדרישות וזיהוי המשימות העיקריות');
+const boxes = document.querySelectorAll('.box'); boxes.forEach((box, index) => { box.innerHTML = `<h2>קופסת ניחוש ${index + 1}</h2>`; });
