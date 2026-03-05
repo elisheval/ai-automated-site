@@ -1,52 +1,75 @@
-let randomNumber = Math.floor(Math.random() * 100) + 1;
-let attempts = 5;
+document.addEventListener('DOMContentLoaded', () => {
+    // אתחול משתנים
+    let randomNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 5;
 
-const guessInput = document.getElementById('guessInput');
-const guessBtn = document.getElementById('guessBtn');
-const message = document.getElementById('message');
-const attemptsLeft = document.getElementById('attemptsLeft');
-const restartBtn = document.getElementById('restartBtn');
+    // חיבור לאלמנטים מה-HTML
+    const guessInput = document.getElementById('guessInput');
+    const guessBtn = document.getElementById('guessBtn');
+    const message = document.getElementById('message');
+    const attemptsLeft = document.getElementById('attemptsLeft');
+    const restartBtn = document.getElementById('restartBtn');
 
-guessBtn.addEventListener('click', () => {
-    const userGuess = parseInt(guessInput.value);
+    // פונקציית הניחוש
+    function handleGuess() {
+        const userGuess = parseInt(guessInput.value);
 
-    if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-        message.innerText = "נא להקיש מספר תקין (1-100) 🧐";
-        return;
+        // בדיקה אם הקלט תקין
+        if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+            message.innerText = "נא להקיש מספר תקין (1-100) 🧐";
+            return;
+        }
+
+        attempts--;
+        attemptsLeft.innerText = attempts;
+
+        if (userGuess === randomNumber) {
+            message.innerHTML = "<b>אלופה! ניחשת נכון! 🎉🏆</b>";
+            message.style.color = "#27ae60";
+            gameOver();
+        } else if (attempts === 0) {
+            message.innerHTML = `נגמרו הניסיונות... המספר היה <b>${randomNumber}</b> 💔`;
+            message.style.color = "#eb4d4b";
+            gameOver();
+        } else if (userGuess > randomNumber) {
+            message.innerText = "גבוה מדי! נסי מספר נמוך יותר 👇";
+        } else {
+            message.innerText = "נמוך מדי! נסי מספר גבוה יותר 👆";
+        }
+
+        guessInput.value = '';
+        guessInput.focus();
     }
 
-    attempts--;
-    attemptsLeft.innerText = attempts;
-
-    if (userGuess === randomNumber) {
-        message.innerText = "אלופה! ניחשת נכון! 🎉🏆";
-        gameOver();
-    } else if (attempts === 0) {
-        message.innerText = `נגמרו הניסיונות... המספר היה ${randomNumber} 💔`;
-        gameOver();
-    } else if (userGuess > randomNumber) {
-        message.innerText = "גבוה מדי! נסי מספר נמוך יותר 👇";
-    } else {
-        message.innerText = "נמוך מדי! נסי מספר גבוה יותר 👆";
+    // פונקציית סיום משחק
+    function gameOver() {
+        guessInput.disabled = true;
+        guessBtn.style.display = 'none';
+        restartBtn.style.display = 'inline-block';
     }
 
-    guessInput.value = '';
-    guessInput.focus();
-});
+    // פונקציית איפוס משחק
+    function resetGame() {
+        randomNumber = Math.floor(Math.random() * 100) + 1;
+        attempts = 5;
+        attemptsLeft.innerText = attempts;
+        message.innerText = "בהצלחה! ✨";
+        message.style.color = "#4b6584";
+        guessInput.disabled = false;
+        guessInput.value = '';
+        guessBtn.style.display = 'inline-block';
+        restartBtn.style.display = 'none';
+        guessInput.focus();
+    }
 
-function gameOver() {
-    guessInput.disabled = true;
-    guessBtn.classList.add('hidden');
-    restartBtn.classList.remove('hidden');
-}
+    // הוספת האזנה ללחיצות (Click)
+    guessBtn.addEventListener('click', handleGuess);
+    restartBtn.addEventListener('click', resetGame);
 
-restartBtn.addEventListener('click', () => {
-    randomNumber = Math.floor(Math.random() * 100) + 1;
-    attempts = 5;
-    attemptsLeft.innerText = attempts;
-    message.innerText = "בהצלחה! ✨";
-    guessInput.disabled = false;
-    guessBtn.classList.remove('hidden');
-    restartBtn.classList.add('hidden');
-    guessInput.value = '';
+    // אפשרות ללחוץ על Enter במקום על הכפתור
+    guessInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleGuess();
+        }
+    });
 });
