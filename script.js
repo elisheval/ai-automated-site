@@ -1,1 +1,1 @@
-const boxes = document.querySelectorAll('.box'); boxes.forEach((box, index) => { box.innerHTML = `<h2>קופסת ניחוש ${index + 1}</h2>`; });
+const guessBoxes = document.querySelectorAll('.guess-box'); guessBoxes.forEach(box => { box.addEventListener('click', () => { console.log('Guess box clicked'); }); });
