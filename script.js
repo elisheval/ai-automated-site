@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     let randomNumber = Math.floor(Math.random() * 300) + 1;
-    let attempts = 5;
+    let attempts = 10;
 
     const guessInput = document.getElementById('guessInput');
     const guessBtn = document.getElementById('guessBtn');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userGuess = parseInt(guessInput.value);
 
         if (isNaN(userGuess) || userGuess < 1 || userGuess > 300) {
-            message.innerText = 'נא להזין מספר בין 1 ל-300';
+            message.innerText = 'נא להזין מספר בין 1-300';
             message.style.color = '#e74c3c';
             return;
         }
@@ -25,15 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
             message.style.color = '#27ae60';
             gameOver();
         } else if (attempts === 0) {
-            message.innerHTML = `המשחק נגמר! המספר היה <b>${randomNumber}</b>`;
+            message.innerHTML = `נגמרו הניסיונות! המספר היה <b>${randomNumber}</b>`;
             message.style.color = '#c0392b';
             gameOver();
         } else if (userGuess > randomNumber) {
-            message.innerText = 'גבוה מדי! נסה שוב.';
-            message.style.color = '#4b6584';
+            message.innerText = 'גבוה מידי! נסה שוב.';
+            message.style.color = '#f39c12';
         } else {
-            message.innerText = 'נמוך מדי! נסה שוב.';
-            message.style.color = '#4b6584';
+            message.innerText = 'נמוך מידי! נסה שוב.';
+            message.style.color = '#f39c12';
         }
 
         guessInput.value = '';
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     restartBtn.addEventListener('click', () => {
         randomNumber = Math.floor(Math.random() * 300) + 1;
-        attempts = 5;
+        attempts = 10;
         attemptsLeft.innerText = attempts;
         message.innerText = '';
         guessInput.disabled = false;
